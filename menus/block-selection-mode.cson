@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle block-selection-mode'
+      'command': 'block-selection-mode:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'block-selection-mode'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'block-selection-mode:toggle'
+        }
+      ]
+    ]
+  }
+]

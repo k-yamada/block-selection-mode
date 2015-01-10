@@ -1,0 +1,16 @@
+{
+  "name": "block-selection-mode",
+  "main": "./lib/block-selection-mode",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "activationCommands": {
+    "atom-workspace": "block-selection-mode:toggle"
+  },
+  "repository": "https://github.com/atom/block-selection-mode",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

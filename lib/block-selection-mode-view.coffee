@@ -6,24 +6,18 @@ class BlockSelectionModeView
   constructor: (@editorElement) ->
     @emitter = new Emitter
     @subscriptions = new CompositeDisposable
-
     @editor = @editorElement.getModel()
-
-    # Create root element
-    @element = document.createElement('div')
-    @element.classList.add('block-selection-mode')
-
-    # Create message element
-    message = document.createElement('div')
-    message.textContent = "The BlockSelectionMode package is Alive! It's ALIVE!"
-    message.classList.add('message')
-    @element.appendChild(message)
-
     @editorElement.classList.add("block-selection-mode")
 
     for cursor in @editor.getCursors()
-      @subscriptions.add cursor.onDidChangePosition (event) ->
-        console.log(event)
+      @subscriptions.add cursor.onDidChangePosition (event) => @onDidChangePosition(event)
+
+    @subscriptions.add atom.commands.add @editorElement, "block-selection-mode:toggle", (event) => @toggle()
+    @subscriptions.add atom.commands.add @editorElement, "core:cancel", (event) => @deactivate()
+
+  onDidChangePosition: (event) ->
+    if @isActivated
+      console.log(event)
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -38,3 +32,17 @@ class BlockSelectionModeView
 
   getElement: ->
     @element
+
+  toggle: ->
+    if @isActivated
+      @deactivate()
+    else
+      @activate()
+
+  activate: ->
+    console.log("activate")
+    @isActivated = true
+
+  deactivate: ->
+    console.log("deactivate")
+    @isActivated = false

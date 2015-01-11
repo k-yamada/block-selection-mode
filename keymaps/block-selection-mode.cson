@@ -8,4 +8,4 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
-  'ctrl-alt-o': 'block-selection-mode:toggle'
+  'ctrl-enter': 'block-selection-mode:toggle'

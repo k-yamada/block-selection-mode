@@ -1,7 +1,7 @@
 {
   "name": "block-selection-mode",
   "main": "./lib/block-selection-mode",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Enable block-selection-mode",
   "activationCommands": {
     "atom-workspace": "block-selection-mode:toggle"

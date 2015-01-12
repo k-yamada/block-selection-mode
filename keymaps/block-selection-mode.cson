@@ -9,3 +9,10 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
   'ctrl-enter': 'block-selection-mode:toggle'
+  'ctrl-n': 'block-selection-mode:next-line'
+
+'.editor.block-selection-mode':
+  'ctrl-n': 'block-selection-mode:next-line'
+  'ctrl-p': 'block-selection-mode:previous-line'
+  'ctrl-f': 'block-selection-mode:forward-char'
+  'ctrl-b': 'block-selection-mode:backward-char'

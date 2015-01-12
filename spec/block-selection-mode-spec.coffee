@@ -1,3 +1,5 @@
+{Workspace} = require 'atom'
+
 BlockSelectionMode = require '../lib/block-selection-mode'
 
 # Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
@@ -6,57 +8,35 @@ BlockSelectionMode = require '../lib/block-selection-mode'
 # or `fdescribe`). Remove the `f` to unfocus the block.
 
 describe "BlockSelectionMode", ->
-  [workspaceElement, activationPromise] = []
+  [editor, editorElement, workspaceElement, activationPromise] = []
 
   beforeEach ->
-    workspaceElement = atom.views.getView(atom.workspace)
+    atom.workspace = new Workspace
     activationPromise = atom.packages.activatePackage('block-selection-mode')
+    workspaceElement = atom.views.getView(atom.workspace)
 
-  describe "when the block-selection-mode:toggle event is triggered", ->
-    it "hides and shows the modal panel", ->
-      # Before the activation event the view is not on the DOM, and no panel
-      # has been created
-      expect(workspaceElement.querySelector('.block-selection-mode')).not.toExist()
+    # This is an activation event, triggering it will cause the package to be
+    # activated.
+    atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
 
-      # This is an activation event, triggering it will cause the package to be
-      # activated.
-      atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
+    waitsForPromise ->
+      atom.workspace.open()
 
-      waitsForPromise ->
-        activationPromise
+    waitsForPromise ->
+      atom.packages.activatePackage('block-selection-mode')
+      #atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
+      #activationPromise
 
-      runs ->
-        expect(workspaceElement.querySelector('.block-selection-mode')).toExist()
+    runs ->
+      editor = atom.workspace.getActiveTextEditor()
+      editorElement = atom.views.getView(editor)
 
-        blockSelectionModeElement = workspaceElement.querySelector('.block-selection-mode')
-        expect(blockSelectionModeElement).toExist()
+  #describe ".activate", ->
+  #  it "adds the block-selection-mode class to the editor", ->
+  #    atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
+  #    expect(editorElement.classList.contains('block-selection-mode')).toBe(true)
 
-        blockSelectionModePanel = atom.workspace.panelForItem(blockSelectionModeElement)
-        expect(blockSelectionModePanel.isVisible()).toBe true
-        atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
-        expect(blockSelectionModePanel.isVisible()).toBe false
-
-    it "hides and shows the view", ->
-      # This test shows you an integration test testing at the view level.
-
-      # Attaching the workspaceElement to the DOM is required to allow the
-      # `toBeVisible()` matchers to work. Anything testing visibility or focus
-      # requires that the workspaceElement is on the DOM. Tests that attach the
-      # workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement)
-
-      expect(workspaceElement.querySelector('.block-selection-mode')).not.toExist()
-
-      # This is an activation event, triggering it causes the package to be
-      # activated.
-      atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
-
-      waitsForPromise ->
-        activationPromise
-
-      runs ->
-        # Now we can test for view visibility
-        blockSelectionModeElement = workspaceElement.querySelector('.block-selection-mode')
-        expect(blockSelectionModeElement).toBeVisible()
-        atom.commands.dispatch workspaceElement, 'block-selection-mode:toggle'
-        expect(blockSelectionModeElement).not.toBeVisible()
+  describe ".deactivate", ->
+    it "removes the block-selection-mode class from the editor", ->
+      atom.packages.deactivatePackage('block-selection-mode')
+      expect(editorElement.classList.contains('block-selection-mode')).toBe(false)

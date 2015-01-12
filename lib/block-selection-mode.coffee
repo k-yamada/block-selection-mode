@@ -8,7 +8,6 @@ module.exports = BlockSelectionMode =
   modeViews: []
 
   activate: (state) ->
-    console.log("activate")
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
     @disposables = new CompositeDisposable
@@ -32,8 +31,4 @@ module.exports = BlockSelectionMode =
   deactivate: ->
     console.log("diactivate")
     @subscriptions.dispose()
-    @blockSelectionModeView.destroy()
     @modeViews = []
-
-  serialize: ->
-    blockSelectionModeViewState: @blockSelectionModeView.serialize()

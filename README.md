@@ -1,5 +1,16 @@
-# block-selection-mode package
+# block-selection-mode
 
-A short description of your package.
+Enable block-selection-mode.
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![](https://raw.github.com/k-yamada/block-selection-mode/master/screenshot.gif)
+
+# Commands
+
+* `ctrl-enter` toggle block-selection-mode
+
+### in the block-selection-mode
+
+* `ctrl-f` forward-char
+* `ctrl-b` backward-char
+* `ctrl-n` next-line
+* `ctrn-p` previous-line

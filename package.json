@@ -2,7 +2,7 @@
   "name": "block-selection-mode",
   "main": "./lib/block-selection-mode",
   "version": "0.2.0",
-  "description": "A short description of your package",
+  "description": "Enable block-selection-mode",
   "activationCommands": {
     "atom-workspace": "block-selection-mode:toggle"
   },

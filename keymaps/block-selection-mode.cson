@@ -12,6 +12,14 @@
 
 '.editor.block-selection-mode':
   'ctrl-n': 'block-selection-mode:next-line'
+  'down'  : 'block-selection-mode:next-line'
   'ctrl-p': 'block-selection-mode:previous-line'
+  'up'    : 'block-selection-mode:previous-line'
   'ctrl-f': 'block-selection-mode:forward-char'
+  'right' : 'block-selection-mode:forward-char'
   'ctrl-b': 'block-selection-mode:backward-char'
+  'left'  : 'block-selection-mode:backward-char'
+  'ctrl-g': 'core:cancel'
+  'escape': 'core:cancel'
+  'alt-<': 'block-selection-mode:move-to-top'
+  'alt->': 'block-selection-mode:move-to-bottom'

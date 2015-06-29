@@ -10,7 +10,7 @@
 'atom-workspace':
   'ctrl-enter': 'block-selection-mode:toggle'
 
-'.editor.block-selection-mode':
+'.atom-text-editor.block-selection-mode':
   'ctrl-n': 'block-selection-mode:next-line'
   'down'  : 'block-selection-mode:next-line'
   'ctrl-p': 'block-selection-mode:previous-line'
